@@ -30,7 +30,12 @@ class ProviderUsers with ChangeNotifier {
                 id: user.id,
                 nome: user.nome,
                 email: user.email,
-                urlImagem: user.urlImagem));
+                urlImagem: user.urlImagem,
+                telefone: user.telefone
+                    .replaceAll(" ", "")
+                    .replaceAll("-", "")
+                    .replaceAll("(", "")
+                    .replaceAll(")", "")));
       } else {
         final id = Random().nextDouble().toString();
 
@@ -40,7 +45,12 @@ class ProviderUsers with ChangeNotifier {
                 id: id,
                 nome: user.nome,
                 email: user.email,
-                urlImagem: user.urlImagem));
+                urlImagem: user.urlImagem,
+                telefone: user.telefone
+                    .replaceAll(" ", "")
+                    .replaceAll("-", "")
+                    .replaceAll("(", "")
+                    .replaceAll(")", "")));
       }
 
       notifyListeners();

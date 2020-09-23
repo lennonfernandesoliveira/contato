@@ -5,6 +5,7 @@ const DUMMYUSERS = {
     id: '1',
     nome: 'Lennon',
     email: 'lennon@gmail.com',
+    telefone: '3133333331',
     urlImagem:
         'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_960_720.png',
   ),
@@ -12,6 +13,7 @@ const DUMMYUSERS = {
     id: '2',
     nome: 'Danielle',
     email: 'danielle@gmail.com',
+    telefone: '3133333332',
     urlImagem:
         'https://cdn.pixabay.com/photo/2016/04/25/21/14/woman-1353211_960_720.png',
   ),
@@ -19,6 +21,7 @@ const DUMMYUSERS = {
     id: '3',
     nome: 'Noah',
     email: 'Noah@gmail.com',
+    telefone: '3133333333',
     urlImagem:
         'https://cdn.pixabay.com/photo/2017/08/14/08/39/emoji-2639736_960_720.png',
   ),

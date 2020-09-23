@@ -9,7 +9,7 @@ class UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProviderUsers users = Provider.of(context);
     return Scaffold(
-        appBar: AppBar(title: Text('Lista de usuários'), actions: <Widget>[
+        appBar: AppBar(title: Text('Lista de contatos'), actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {

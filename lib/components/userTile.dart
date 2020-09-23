@@ -3,6 +3,7 @@ import 'package:flutter_crud/models/user.dart';
 import 'package:flutter_crud/provider/providerUsers.dart';
 import 'package:flutter_crud/routes/appRoutes.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class UserTile extends StatelessWidget {
   final User usuario;
@@ -13,10 +14,22 @@ class UserTile extends StatelessWidget {
     final imagem = usuario.urlImagem == null || usuario.urlImagem.isEmpty
         ? CircleAvatar(child: Icon(Icons.person))
         : CircleAvatar(backgroundImage: NetworkImage(usuario.urlImagem));
+    var maskFormatter = new MaskedTextController(
+        mask: '(00) 0000-0000', text: usuario.telefone);
+
     return ListTile(
         leading: imagem,
         title: Text(usuario.nome),
-        subtitle: Text(usuario.email),
+        //subtitle: Text(usuario.email),
+        subtitle: Column(
+          children: <Widget>[
+            Text(usuario.email),
+            TextField(
+              controller: maskFormatter,
+              enabled: false,
+            )
+          ],
+        ),
         trailing: Container(
           width: 100,
           child: Row(
@@ -35,7 +48,7 @@ class UserTile extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (ctx) => AlertDialog(
-                            title: Text('Excluir usuário'),
+                            title: Text('Excluir contato'),
                             content: Text('Tem certeza?'),
                             actions: <Widget>[
                               FlatButton(
