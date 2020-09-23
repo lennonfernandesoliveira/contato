@@ -4,6 +4,7 @@ import 'package:flutter_crud/provider/providerUsers.dart';
 import 'package:flutter_crud/routes/appRoutes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:string_mask/string_mask.dart';
 
 class UserTile extends StatelessWidget {
   final User usuario;
@@ -16,18 +17,14 @@ class UserTile extends StatelessWidget {
         : CircleAvatar(backgroundImage: NetworkImage(usuario.urlImagem));
     var maskFormatter = new MaskedTextController(
         mask: '(00) 0000-0000', text: usuario.telefone);
-
+    var formatter = new StringMask('(00) 0000-0000');
     return ListTile(
         leading: imagem,
         title: Text(usuario.nome),
-        //subtitle: Text(usuario.email),
         subtitle: Column(
           children: <Widget>[
             Text(usuario.email),
-            TextField(
-              controller: maskFormatter,
-              enabled: false,
-            )
+            Text(formatter.apply(usuario.telefone))
           ],
         ),
         trailing: Container(
