@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           title: 'Controle de Contatos',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.cyan,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           routes: {

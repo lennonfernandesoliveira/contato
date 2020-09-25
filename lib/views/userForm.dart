@@ -29,7 +29,7 @@ class UserForm extends StatelessWidget {
     _carregarDadosAoIniciar(usuarioParaEdicao);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Formulário de contato.'),
+        title: Text('Formulário de contato'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.save),
