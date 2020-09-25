@@ -23,8 +23,8 @@ class UserForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final usuarioParaEdicao = ModalRoute.of(context).settings.arguments as User;
     var controller = new MaskTextInputFormatter(
-        mask: '(##) ####-####', filter: {"#": RegExp(r'[0-9]')});
-    var formatter = new StringMask('(00) 0000-0000');
+        mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
+    var formatter = new StringMask('(00) 00000-0000');
 
     _carregarDadosAoIniciar(usuarioParaEdicao);
     return Scaffold(

@@ -5,6 +5,7 @@ import 'package:flutter_crud/routes/appRoutes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:string_mask/string_mask.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserTile extends StatelessWidget {
   final User usuario;
@@ -16,8 +17,8 @@ class UserTile extends StatelessWidget {
         ? CircleAvatar(child: Icon(Icons.person))
         : CircleAvatar(backgroundImage: NetworkImage(usuario.urlImagem));
     var maskFormatter = new MaskedTextController(
-        mask: '(00) 0000-0000', text: usuario.telefone);
-    var formatter = new StringMask('(00) 0000-0000');
+        mask: '(00) 00000-0000', text: usuario.telefone);
+    var formatter = new StringMask('(00) 00000-0000');
     return ListTile(
         leading: imagem,
         title: Text(usuario.nome),
@@ -28,7 +29,7 @@ class UserTile extends StatelessWidget {
           ],
         ),
         trailing: Container(
-          width: 100,
+          width: 147,
           child: Row(
             children: <Widget>[
               IconButton(
@@ -42,12 +43,50 @@ class UserTile extends StatelessWidget {
                 icon: Icon(Icons.delete),
                 color: Colors.red,
                 onPressed: () {
-                  Provider.of<ProviderUsers>(context, listen: false)
-                      .remove(usuario);
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                            title: Text('Excluir contato'),
+                            content: Text('Tem certeza?'),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Não')),
+                              FlatButton(
+                                  onPressed: () {
+                                    Provider.of<ProviderUsers>(context,
+                                            listen: false)
+                                        .remove(usuario);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Sim'))
+                            ],
+                          ));
                 },
               ),
+              IconButton(
+                  icon: Icon(Icons.phone),
+                  color: Colors.red,
+                  onPressed: () {
+                    fazerLigacao(usuario.telefone
+                        .replaceAll(" ", "")
+                        .replaceAll("-", "")
+                        .replaceAll("(", "")
+                        .replaceAll(")", ""));
+                  }),
             ],
           ),
         ));
+  }
+
+  fazerLigacao(String tel) async {
+    String url = "tel:" + tel;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
