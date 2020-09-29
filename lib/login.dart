@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
   var titulo = "Pronto";
   var mensagem = "Toque no botão para logar através da biometria";
   var icone = Icons.settings_power;
-  var corIcone = Colors.yellow;
+  var corIcone = Colors.black;
   var corBotao = Colors.blue;
 
   @override
@@ -42,13 +42,14 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text("Agenda"),
       ),
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
           Padding(
               padding: EdgeInsets.only(top: 50),
               child: Center(
                 child: Card(
+                  color: Colors.blue,
                   child: Column(
                     children: <Widget>[
                       Padding(
