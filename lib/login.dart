@@ -30,11 +30,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final LocalAuthentication _localAuth = LocalAuthentication();
-  var _title = "Pronto";
-  var _message = "Toque no botão para iniciar a autenticação";
-  var _icone = Icons.settings_power;
-  var _colorIcon = Colors.yellow;
-  var _colorButton = Colors.blue;
+  var titulo = "Pronto";
+  var mensagem = "Toque no botão para logar através da biometria";
+  var icone = Icons.settings_power;
+  var corIcone = Colors.yellow;
+  var corBotao = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +55,15 @@ class _HomeState extends State<Home> {
                         padding: EdgeInsets.fromLTRB(10, 40, 10, 40),
                         child: ListTile(
                           leading: Icon(
-                            _icone,
-                            color: _colorIcon,
+                            icone,
+                            color: corIcone,
                           ),
                           title: Text(
-                            _title,
+                            titulo,
                             style: TextStyle(fontSize: 30),
                           ),
                           subtitle: Text(
-                            _message,
+                            mensagem,
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
                     width: 100,
                     height: 50, // specific value
                     child: RaisedButton(
-                      color: _colorButton,
+                      color: corBotao,
                       child: Icon(Icons.fingerprint),
                       onPressed: _checkBiometricSensor,
                     )),
@@ -96,27 +96,27 @@ class _HomeState extends State<Home> {
   Future<void> _checkBiometricSensor() async {
     try {
       var authenticate = await _localAuth.authenticateWithBiometrics(
-          localizedReason: 'Por favor autentique-se para continuar');
+          localizedReason: 'Favor, logar através da biometria');
 
       setState(() {
         if (authenticate) {
           Navigator.of(context).pushReplacementNamed('/Home');
         } else {
-          _title = "Ops";
-          _message = "Tente novamente!";
-          _icone = Icons.clear;
-          _colorIcon = Colors.red;
-          _colorButton = Colors.red;
+          titulo = "Ops";
+          mensagem = "Biometria inválida!";
+          icone = Icons.clear;
+          corIcone = Colors.red;
+          corBotao = Colors.red;
         }
       });
     } on PlatformException catch (e) {
       if (e.code == auth_error.notAvailable) {
         setState(() {
-          _title = "Desculpe";
-          _message = "Não conseguimos encontrar o sensor biométrico :(";
-          _icone = Icons.clear;
-          _colorIcon = Colors.red;
-          _colorButton = Colors.red;
+          titulo = "Desculpe";
+          mensagem = "Sensor biométrico não encontrado :(";
+          icone = Icons.clear;
+          corIcone = Colors.red;
+          corBotao = Colors.red;
         });
       }
     }
