@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
     // });
 
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: TextTheme(
           headline5: TextStyle(fontWeight: FontWeight.bold, fontSize: 48),

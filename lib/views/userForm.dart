@@ -29,7 +29,7 @@ class UserForm extends StatelessWidget {
     _carregarDadosAoIniciar(usuarioParaEdicao);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Formulário de contato'),
+        title: Text('Dados do contato'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.save),
@@ -85,6 +85,8 @@ class UserForm extends StatelessWidget {
                           .replaceAll(")", "");
                       if (valor == null || valor.isEmpty) {
                         return 'Telefone em branco.';
+                      } else if (valor.length < 11) {
+                        return 'Telefone inválido.';
                       }
 
                       return null;

@@ -15,7 +15,7 @@ class HomeApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
-          title: 'Controle de Contatos',
+          title: 'Agenda',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,

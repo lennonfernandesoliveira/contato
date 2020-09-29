@@ -36,6 +36,36 @@ class ProviderUsers with ChangeNotifier {
     notifyListeners();
   }
 
+  void carregarSemNotificar() async {
+    _items.clear();
+    final todasLinhas = await dbHelper.queryAllRows();
+    User usuario;
+    for (var n in todasLinhas) {
+      usuario = new User(
+          id: n['id'].toString(),
+          nome: n['nome'],
+          email: n['email'],
+          urlImagem: n['urlImagem'] != null ? n['urlImagem'] : null,
+          telefone: n['telefone']);
+      _items.putIfAbsent(usuario.id, () => usuario);
+    }
+  }
+
+  void findByName(String nome) async {
+    _items.clear();
+    final todasLinhas = await dbHelper.findByName(nome);
+    User usuario;
+    for (var n in todasLinhas) {
+      usuario = new User(
+          id: n['id'].toString(),
+          nome: n['nome'],
+          email: n['email'],
+          urlImagem: n['urlImagem'] != null ? n['urlImagem'] : null,
+          telefone: n['telefone']);
+      _items.putIfAbsent(usuario.id, () => usuario);
+    }
+  }
+
   void put(User user) async {
     if (user != null) {
       Map<String, dynamic> row = {

@@ -9,7 +9,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Controle de Contatos',
+      title: 'Agenda',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Controle de contatos"),
+        title: Text("Agenda"),
       ),
       backgroundColor: Colors.grey,
       body: Column(

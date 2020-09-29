@@ -65,6 +65,12 @@ class DatabaseHelper {
     return await db.query(table);
   }
 
+  Future<List<Map<String, dynamic>>> findByName(String nome) async {
+    Database db = await instance.database;
+    return await db
+        .rawQuery('select *from $table where nome like ?', [nome + '%']);
+  }
+
   // Todos os métodos : inserir, consultar, atualizar e excluir,
   // também podem ser feitos usando  comandos SQL brutos.
   // Esse método usa uma consulta bruta para fornecer a contagem de linhas.
