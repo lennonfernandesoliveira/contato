@@ -4,31 +4,12 @@ import 'package:local_auth/error_codes.dart' as auth_error;
 import 'package:flutter/services.dart';
 import 'package:flutter_crud/home.dart';
 
-class Login extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Agenda',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Home(),
-      routes: <String, WidgetBuilder>{
-        '/Home': (BuildContext context) => HomeApp(),
-      },
-    );
-  }
-}
-
-class Home extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Login> {
   final LocalAuthentication _localAuth = LocalAuthentication();
   var titulo = "Pronto";
   var mensagem = "Toque no botão para logar através da biometria";
@@ -101,7 +82,7 @@ class _HomeState extends State<Home> {
 
       setState(() {
         if (authenticate) {
-          Navigator.of(context).pushReplacementNamed('/Home');
+          Navigator.of(context).pushNamed('/Home');
         } else {
           titulo = "Ops";
           mensagem = "Biometria inválida!";
