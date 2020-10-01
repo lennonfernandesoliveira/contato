@@ -81,7 +81,7 @@ class _HomeState extends State<Login> {
 
       setState(() {
         if (authenticate) {
-          Navigator.of(context).pushNamed('/Home');
+          Navigator.of(context).pushReplacementNamed('/Home');
         } else {
           titulo = "Ops";
           mensagem = "Biometria inválida!";
